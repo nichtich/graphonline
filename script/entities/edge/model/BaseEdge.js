@@ -54,7 +54,7 @@ BaseEdge.prototype.SaveToXML = function ()
 	return "<edge " + 
 	       "source=\""     + this.vertex1.id   + "\" " +
 	       "target=\""     + this.vertex2.id   + "\" " +
-	       "isDirect=\""   + this.isDirect + "\" " +
+	       "directed=\""   + this.isDirect + "\" " +
 	       "weight=\""     + this.weight   + "\" " +
 	       "useWeight=\""  + this.useWeight + "\" " +
 	       "id=\""         + this.id + "\" " +
@@ -81,7 +81,7 @@ BaseEdge.prototype.LoadFromXML = function (xml, graph)
         attr = xml.attr('target');
     }
 	this.vertex2   =    graph.FindVertex(typeof attr !== 'undefined' ? attr : xml.attr('graph2'));
-	this.isDirect  =    xml.attr('isDirect') == "true";
+	this.isDirect  =    xml.attr('directed') === "true" || xml.attr('isDirect') == "true";
 	this.weight    =    parseFloat(xml.attr('weight'));
     if (isNaN(this.weight))
     {
